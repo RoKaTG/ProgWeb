@@ -173,8 +173,7 @@ function addEvents(){
         for(let i = 0; i < accounts.length; i++) playerHolder[i].children[0].innerHTML = accounts[i].deck.length;
     });
     client.on("add-war-cards",(accounts)=>{
-        //this function is the same as the add cards event except
-        // we add one div of the class card back before the shown card
+        //même function que le add cards event sauf qu'on ajoute une div de la class card avant la carte affichée
         players = accounts;
         for(let i = 0; i < players.length; i++){
             if(players[i].id === client.id){
@@ -206,49 +205,49 @@ function addEvents(){
             }
         }
     });
-    client.on("game-over",(accounts)=>{ //when we get the game over event from the server
-        for(let i = 0; i < accounts.length; i++){   //we loop through all the players
-            if(accounts[i].deck.length != 0){   //we find the one that still has cards
-                openAlert(accounts[i].name+" won"); //we send an alert showing who the winnwe is
-                setTimeout(()=>{location.reload()},3000);   //and then 3 seconds later we reload the page disconnecting the current user and reseting everythin
+    client.on("game-over",(accounts)=>{ //quand on a l'event game over du serv
+        for(let i = 0; i < accounts.length; i++){   //boucle for sur les joueurs
+            if(accounts[i].deck.length != 0){   //on trouve celui qui a des cartes
+                openAlert(accounts[i].name+" won"); //alert pour voir qui a win
+                setTimeout(()=>{location.reload()},3000);   //puis 3 secondes plus tard, nous rechargeons la page en déconnectant l’utilisateur actuel et on reset tout
                 break;
             }
         }
     });
-    client.on("player-disconnect",()=>{ //when an user disconnects 
-        openAlert("Disconnected");  //we show an alert informing the current user that there has been a disconnection
-        setTimeout(()=>{location.reload()},3000);   //and then when that alert dissapears we reload the page dissconnecting the current user as well and reseting everyting
+    client.on("player-disconnect",()=>{ //Quand un joueur se deco
+        openAlert("Disconnected");  //alert qui dis qui s'est déco
+        setTimeout(()=>{location.reload()},3000);   //quand l'alert se finis on reload la page et on reset tout en déconnectant le joueur du server totalement
     });
 }
 
 /*--Chat-------------------------------------------------------------------------------------------------------------------------------------------*/
 function sendMessage(){
-    //we get the input element
+    //on recuperer l'input
     let chatInput = document.querySelector("#chat-input");
     if(chatInput.value){
-        //and if something is written inside of it we send the new message event to the server
+        //et si se n'est pas vide on envoi l'event du chat au server
         client.emit("new-message",{name:currPlayer.name,text:chatInput.value});
-        //and then we clear the input element
+        //puis on le clear
         chatInput.value = "";
     }
 }
 function newMessage(message){
-    //we get the chat element and we make 3 div elements
+    //on récup l'élément de chat et on créait 3 div class
     let chat = document.querySelector(".chat");
     let mssg = document.createElement("div");
     let name = document.createElement("div");
     let text = document.createElement("div");
 
-    //we give them the right classes
+    //on leur donne les bonnes classes
     mssg.className =  "chat-log";
     name.className = "chat-name";
     text.className = "chat-text";
 
-    //we fill in their values
+    //on leur donne les valeurs
     name.innerHTML = message.name+":";
     text.innerHTML = message.text;
 
-    //and we append them to the right parent elements
+    //enfin on les append au bon élements parent
     mssg.appendChild(name);
     mssg.appendChild(text);
     chat.appendChild(mssg);

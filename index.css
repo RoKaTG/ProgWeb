@@ -1,0 +1,348 @@
+/*--Animations-------------------------------------------------------------------------------------------------------------------------------------*/
+@keyframes fadeIn{
+    from {opacity:0;}
+    to {opacity:1;}
+}
+@keyframes fadeOut{
+    from {opacity:1;}
+    to {opacity:0;}
+}
+
+/*--Elements---------------------------------------------------------------------------------------------------------------------------------------*/
+body{
+    background-image:radial-gradient(circle,rgb(0,80,0),rgb(0,65,0));
+    background-color:rgb(0,80,0);
+    font-family:"Arial";
+    font-weight:bold;
+    user-select:none;
+    overflow:hidden;
+    height:100vh;
+}
+input[type="text"]{
+    border:0.35vh solid rgb(40,20,0);
+    background-color:rgb(100,50,0);
+    color:rgb(255,240,180);
+    font-family:"Arial";
+    border-radius:2vh;
+    position:absolute;
+    padding-right:1vh;
+    padding-left:1vh;
+    overflow:hidden;
+    font-size:2vh;
+    height:3vh;
+    width:34vh;
+}
+input[type="text"]:disabled{
+    opacity:0.8;
+}
+
+/*--Window-----------------------------------------------------------------------------------------------------------------------------------------*/
+.window{
+    box-shadow:10px 10px 10px rgba(0,0,0,0.2);
+    border:0.75vh solid rgb(40,20,0);
+    background-color:rgb(120,70,20);
+    transform:translate(-50%,-50%);
+    color:rgb(255,240,180);
+    border-radius:2vh;
+    position:absolute;
+    overflow:hidden;
+    left:50%;
+    top:50%;
+}
+.window-head{
+    justify-content:center;
+    align-items:center;
+    position:absolute;
+    font-size:4vh;
+    display:flex;
+    height:5vh;
+    width:100%;
+    left:0px;
+    top:0px;
+}
+.window-body{
+    height:calc(100% - 5vh);
+    position:absolute;
+    width:100%;
+    left:0px;
+    top:5vh;
+}
+
+/*--Button-----------------------------------------------------------------------------------------------------------------------------------------*/
+.button{
+    box-shadow:3px 3px 3px rgba(0,0,0,0.2);
+    border:0.35vh solid rgb(40,20,0);
+    background-color:rgb(120,70,20);
+    transform:translate(0px,0px);
+    justify-content:center;
+    align-items:center;
+    border-radius:2vh;
+    position:absolute;
+    cursor:pointer;
+    font-size:2vh;
+    display:flex;
+    height:3vh;
+    width:20vh;
+}
+.button:hover{
+    transform:translate(0px,-1px);
+}
+.button:active{
+    transform:translate(0px,1px);
+}
+
+/*--Log In-----------------------------------------------------------------------------------------------------------------------------------------*/
+.log-in-subtitle{
+    position:absolute;
+    font-size:2vh;
+    bottom:14.5vh;
+    left:2vh;
+}
+.log-in-display{
+    color:rgb(0,200,0);
+    position:absolute;
+    font-size:2vh;
+    bottom:14.5vh;
+    left:21vh;
+}
+#log-in-window{
+    height:25vh;
+    width:40vh;
+}
+#log-in-button{
+    left:calc(50% - 10.7vh);
+    bottom:2vh;
+}
+#log-in-name{
+    left:calc(50% - 18.7vh);
+    bottom:9.7vh;
+}
+
+/*--Alert------------------------------------------------------------------------------------------------------------------------------------------*/
+.alert-mask{
+    background-color:rgba(0,0,0,0.2);
+    position:absolute;
+    display:none;
+    height:100%;
+    width:100%;
+    left:0px;
+    top:0px;
+}
+#alert{
+    text-align:center;
+    max-width:30vh;
+    font-size:2vh;
+    padding:2vh;
+}
+
+/*--Game-------------------------------------------------------------------------------------------------------------------------------------------*/
+.game-holder{
+    position:absolute;
+    display:none;
+    height:100%;
+    width:100%;
+    left:0px;
+    top:0px;
+}
+.board{
+    background-image:radial-gradient(circle,rgb(0,80,0),rgb(0,65,0));
+    background-color:rgb(0,80,0);
+    width:calc(100vw - 300px);
+    position:absolute;
+    height:100vh;
+    left:0px;
+    top:0px;
+}
+.player-holder{
+    justify-content:center;
+    align-items:center;
+    position:absolute;
+    display:none;
+    height:18vh;
+    padding:1vh;
+}
+.player-name{
+    box-shadow:3px 3px 3px rgba(0,0,0,0.2);
+    border:0.35vh solid rgb(40,20,0);
+    background-color:rgb(120,70,20);
+    color:rgb(255,240,180);
+    justify-content:center;
+    align-items:center;
+    border-radius:2vh;
+    position:absolute;
+    font-size:2vh;
+    display:none;
+    height:3vh;
+    width:20vh;
+    z-index:2;
+}
+
+#player-name-1{
+    transform:translate(-50%);
+    left:50%;
+    top:1vh;
+}
+#player-name-2{
+    transform:translate(-50%);
+    bottom:1vh;
+    left:50%;
+}
+#player-name-3{
+    transform:translateY(-50%) rotate(-90deg);
+    right:-7vh;
+    top:50%;
+}
+#player-name-4{
+    transform:translateY(-50%) rotate(90deg);
+    left:-7vh;
+    top:50%;
+}
+
+#player-1{
+    transform:translateX(-50%);
+    bottom:1vh;
+    left:50%;
+}
+#player-2{
+    transform:translateX(-50%);
+    left:50%;
+    top:1vh;
+}
+#player-3{
+    transform:translate(-1.5vh,-50%) rotate(-90deg);
+    right:1vh;
+    top:50%;
+}
+#player-4{
+    transform:translate(1.5vh,-50%) rotate(90deg);
+    left:1vh;
+    top:50%;
+}
+
+.card-back{
+    background-color:rgb(255,255,255);
+    background-image:url("images/backs/red.svg");
+    background-position:center center;
+    background-repeat:no-repeat;
+    background-size:contain;
+    width:calc(18vh * 0.72);
+    justify-content:center;
+    align-items:center;
+    font-size:10vh;
+    display:flex;
+    margin:0.5vh;
+    height:18vh;
+}
+.card{
+    background-color:rgb(255,255,255);
+    background-position:center center;
+    background-repeat:no-repeat;
+    background-size:contain;
+    width:calc(18vh * 0.72);
+    justify-content:center;
+    align-items:center;
+    display:flex;
+    margin:0.5vh;
+    height:18vh;
+}
+.center-button-mask{
+    border:0.35vh solid rgb(40,20,0);
+    background-color:rgba(0,0,0,0.5);
+    left:calc(50% - 2.5vh);
+    top:calc(50% - 2.5vh);
+    border-radius:100%;
+    position:absolute;
+    display:none;
+    height:5vh;
+    width:5vh;
+}
+#center-button{
+    color:rgb(255,240,180);
+    left:calc(50% - 2.5vh);
+    top:calc(50% - 2.5vh);
+    border-radius:100%;
+    height:5vh;
+    width:5vh;
+}
+
+/*--Chat-------------------------------------------------------------------------------------------------------------------------------------------*/
+.chat-holder{
+    border-left:0.75vh solid rgb(40,20,0);
+    background-color:rgb(120,70,20);
+    position:absolute;
+    height:100vh;
+    width:300px;
+    right:0px;
+    top:0px;
+}
+.chat{
+    width:calc(100% - 2vw);
+    position:absolute;
+    overflow-x:hidden;
+    overflow-y:auto;
+    height:93vh;
+    left:1vw;
+    top:1vh;
+}
+.chat-input-holder{
+    position:absolute;
+    height:5vh;
+    width:100%;
+    left:0px;
+    top:95vh;
+}
+.chat-button{
+    box-shadow:3px 3px 3px rgba(0,0,0,0.2);
+    border:0.35vh solid rgb(40,20,0);
+    background-color:rgb(120,70,20);
+    transform:translate(0px,0px);
+    color:rgb(255,240,180);
+    justify-content:center;
+    align-items:center;
+    border-radius:2vh;
+    position:absolute;
+    font-size:1.5vh;
+    cursor:pointer;
+    display:flex;
+    height:3.3vh;
+    right:0.5vh;
+    width:50px;
+    top:0.5vh;
+}
+.chat-button:hover{
+    transform:translate(0px,-1px);
+}
+.chat-button:active{
+    transform:translate(0px,1px);
+}
+.chat-log{
+    overflow:hidden;
+    display:flex;
+    height:3vh;
+    width:100%;
+}
+.chat-name{
+    white-space:nowrap;
+    color:rgb(40,20,0);
+    justify-content:flex-start;
+    align-items:center;
+    padding-right:10px;
+    font-size:1.75vh;
+    display:flex;
+    height:100%;
+}
+.chat-text{
+    white-space:nowrap;
+    color:rgb(255,240,180);
+    justify-content:flex-start;
+    align-items:center;
+    font-size:1.75vh;
+    display:flex;
+    height:100%;
+}
+#chat-input{
+    height:3.3vh;
+    width:200px;
+    left:0.5vh;
+    top:0.5vh;
+}

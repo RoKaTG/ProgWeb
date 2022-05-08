@@ -35,31 +35,31 @@ function openAlert(text){
 /*--Events-----------------------------------------------------------------------------------------------------------------------------------------*/
 function addEvents(){
     let loginName = document.querySelector("#log-in-name");
-    //when the user click on the log in button we check if the user has written anything in
+    //lorsque l’utilisateur clique sur le bouton de connexion, nous vérifions si l’utilisateur a écrit quelque chose dans
     document.querySelector("#log-in-button").onclick = ()=>{    
-        if(!loginName.value) openAlert("You must input a name");    //if no then we show an error window
-        else client.emit("log-in-attempt",loginName.value); //if yes we send the login attemp to the server
+        if(!loginName.value) openAlert("You must input a name");    //si non, nous affichons une fenêtre d’erreur
+        else client.emit("log-in-attempt",loginName.value); //si oui, nous envoyons le login attempt au serveur
     };
-    document.querySelector(".chat-button").onclick = sendMessage;   //when we click on the chat button we send the given message to the chat
+    document.querySelector(".chat-button").onclick = sendMessage;   //lorsque nous cliquons sur le bouton du chat, le msg s'envoi
 
-    //the following few events show different error windows depending on the recieved error type
+    //les quelques events suivants montrent différentes fenêtres d’erreur en fonction du type d’erreur reçu
     client.on("error-not-enough-players",()=>{openAlert("Two players are required for the game")});
     client.on("error-name-taken",()=>{openAlert("The name you chose is already taken")});
     client.on("error-game-started",()=>{openAlert("The game has already started")});
     client.on("error-full-lobby",()=>{openAlert("The game lobby is full")});
 
     client.on("log-in-success",()=>{
-        //if the log in is succesfull we notify the user with the green text
+        //si la connexion est réussie, nous en informons l’utilisateur avec le texte vert
         document.querySelector(".log-in-display").innerHTML = "Log in successful";
-        //we disable the name input
+        //nous désactivons l'input du pseudo
         document.querySelector("#log-in-name").disabled = true;
-        //and we chage the log in button to the start game button
+        //et nous changeons le bouton de connexion en bouton de démarrage du jeu
         let loginButton = document.querySelector("#log-in-button");
         loginButton.onclick = ()=>{client.emit("initiate-game")}
         loginButton.innerHTML = "Start Game";
     });
     client.on("start-game",(accounts)=>{
-        //we update the players and currPlayer 
+        //update de players et currPlayer 
         players = accounts;
         for(let i = 0; i < players.length; i++){
             if(players[i].id === client.id){
@@ -70,40 +70,40 @@ function addEvents(){
 
         let playerName = document.querySelectorAll(".player-name");
         let playerHolder = document.querySelectorAll(".player-holder");
-        for(let i = 0; i < accounts.length; i++){   //we loop through all the players
-            //we show the card holders and name tags of the logged in players
+        for(let i = 0; i < accounts.length; i++){   //Boucle for sur tout les joueurs
+            //nous montrons les joueurs avec pseudo des gens co
             playerName[i].style.display = "flex";
             playerHolder[i].style.display = "flex";
-            //we add a card back element and give it the right class
+            //nous ajoutons un élément de dos de carte et lui donnons la bonne classe
             let allCards = document.createElement("div");
             allCards.className = "card-back";
-            //we input the number of cards on top of the deck
+            //nous entrons le nombre de cartes sur le dessus du jeu
             allCards.innerHTML = accounts[i].deck.length;
             playerHolder[i].appendChild(allCards);
-            //we the input the current name in the name tag
+            //on input les pseudo actuel dans les tag qui s'afficherons pendant la game
             playerName[i].innerHTML = accounts[i].name;
         }
 
-        let loginWindow = document.querySelector("#log-in-window"); //we then fade out the log in window
+        let loginWindow = document.querySelector("#log-in-window"); //puis on fade out la window de log in
         loginWindow.style.animation = "fadeOut linear 0.2s";
         loginWindow.onanimationend = ()=>{
             loginWindow.style.display = "none";
             loginWindow.onanimationend = "";
 
-            //and when the fade out is complete we fade in the game div
+            //ensuite on fade in la game div
             let gameHolder = document.querySelector(".game-holder");
             gameHolder.style.animation = "fadeIn linear 0.2s";
             gameHolder.style.display = "block";
         }
     });
     client.on("new-message",(message)=>{
-        //if the currPLayer is logged in we call the new message function
+        //Si currPlayer est logged alors on appelle function NewMessage
         if(currPlayer != undefined) newMessage(message);
     });
-    //when the user clicks the center button we make make a move
+    //lorsque l’utilisateur clique sur le bouton play, tirage de carte
     document.querySelector("#center-button").onclick = ()=>{client.emit("play-move")};
     client.on("add-shown-card",(accounts)=>{
-        //we update the players and currPlayer 
+        //update de players et currPlayer 
         players = accounts;
         for(let i = 0; i < players.length; i++){
             if(players[i].id === client.id){
@@ -111,35 +111,35 @@ function addEvents(){
                 break;
             }
         }
-        //we show the mask over the play move button
+        //affichage du mask sur le play boutton 
         document.querySelector(".center-button-mask").style.display = "block";
         let playerHolder = document.querySelectorAll(".player-holder");
-        for(let i = 0; i < accounts.length; i++){   //we loop through the players
-            playerHolder[i].children[0].innerHTML = accounts[i].deck.length;    //we update the number of cards in the deck
-            if(accounts[i].deck.length > 0){    //if there are cards in the deck
-                //we create a new div and give it the card class
+        for(let i = 0; i < accounts.length; i++){   //boucle if sur les joueurs
+            playerHolder[i].children[0].innerHTML = accounts[i].deck.length;    //update le nombre de carte dans le deck
+            if(accounts[i].deck.length > 0){    //si carte dans le deck
+                //creation d'une new div puis on lui donne la creation de card class
                 let newCard = document.createElement("div");
                 newCard.className = "card";
     
-                //we get the value of the card that is being shown
+                //nous obtenons la valeur de la carte qui est montrée
                 let newcardValue = accounts[i].shown[accounts[i].shown.length-1];
                 let allType = ["clubs","diamonds","hearts","spades"];
                 let allValue = ["J","Q","K","A"];
                 let type = allType[newcardValue.type];
-                //we get the type of the card
+                //nous obtenons le type de la carte
                 let value;
-                //we get the value of the card
+                //nous obtenons la valeur de la carte
                 if(newcardValue.value > 11) value = allValue[newcardValue.value-12];
                 else value = "r"+JSON.stringify(newcardValue.value).padStart(2,"0");
 
-                //and based on the two we get the proper image to place on the card div
+                //et sur la base des deux, nous obtenons l’image appropriée à placer sur la carte div
                 newCard.style.backgroundImage = "url(images/"+type+"/"+type+"-"+value+".svg)";
                 playerHolder[i].appendChild(newCard);
             }
         }
     });
     client.on("shown-card-result",(accounts)=>{
-        //we update the players and currPlayer 
+        //update de players et currPlayer 
         players = accounts;
         for(let i = 0; i < players.length; i++){
             if(players[i].id === client.id){
@@ -147,20 +147,20 @@ function addEvents(){
                 break;
             }
         }
-        //we hide the central button mask
+        //hide du bouton central mask
         document.querySelector(".center-button-mask").style.display = "none";
         let playerHolder = document.querySelectorAll(".player-holder");
         for(let i = 0; i < accounts.length; i++){
-            //we update the card numbers
+            //update du nbr de carte
             playerHolder[i].children[0].innerHTML = accounts[i].deck.length;
-            //and we remove all divs from the players holder div except the first one (deck)
+            //et nous enlevons tous les divs du div du holder des joueurs à l’exception du premier (deck)
             while(playerHolder[i].children.length > 1) playerHolder[i].removeChild(playerHolder[i].lastChild);
         }
     });
     client.on("war",(accounts)=>{
-        //we hide the central button mask
+        //hide le boutton central mask
         document.querySelector(".center-button-mask").style.display = "none";
-         //we update the players and currPlayer 
+         //update de players et currPlayer 
         players = accounts;
         for(let i = 0; i < players.length; i++){
             if(players[i].id === client.id){
@@ -168,7 +168,7 @@ function addEvents(){
                 break;
             }
         }
-        //and we update the deck card number
+        //update du nombre de carte dans le deck
         let playerHolder = document.querySelectorAll(".player-holder");
         for(let i = 0; i < accounts.length; i++) playerHolder[i].children[0].innerHTML = accounts[i].deck.length;
     });

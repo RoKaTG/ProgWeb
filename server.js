@@ -27,11 +27,11 @@ io.on("connection",(client)=>{  //Quand un utilisateur se connecte on lui rajout
                 if(gameData.inGame){
                     //On change l'état du jeu/serveur à false si la game est lancée
                     gameData.inGame = false;
-                    //we send and event to all the player to cancel the current game
+                    //Pour annuler la game actuelle
                     io.emit("player-disconnect");
-                    //and we reset the game data back to the default value
+                    //On reset le game data aux valeurs par defaut
                     gameData = {inGame:false,accounts:[],chat:[]};
-                    //we save the data back ot the data.json
+                    //On re save le data dans le data.json
                     fs.writeFile("./data.json",JSON.stringify(gameData),(error)=>{
                         if(error) console.log("Error reading data from dist\n"+error);
                     });

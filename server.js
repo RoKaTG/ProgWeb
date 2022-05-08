@@ -36,7 +36,7 @@ io.on("connection",(client)=>{  //Quand un utilisateur se connecte on lui rajout
                         if(error) console.log("Error reading data from dist\n"+error);
                     });
                 }
-                //if the game hasn't started we simply loop through all the players and find the one Si la game n'a pas commencer alors on lance boucle for
+                //Si la game n'a pas commencer alors on lance boucle for
                 //Boucle for permettant de trouver l'id du joueur à celui qui s'est déconnecté pour l'enlever de la liste
                 for(let i = 0; i < accounts.length; i++){
                     if(accounts[i].id === client.id){

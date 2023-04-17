@@ -24,7 +24,7 @@ Server running in port 3000...
 localhost:3000
 ```
 - Entrez vos pseudos (vous ne pouvez pas avoir les mêmes pseudos, sinon un message d'erreur s'affichera).
-- Appuyez sur le bouton "log in and play" pour lancer une partie (jusqu'à quatre joueurs peuvent jouer).
+- Appuyez sur le bouton ""log in and play"" pour lancer une partie (jusqu'à quatre joueurs peuvent jouer).
 - Jouez au jeu ! Le premier joueur à ne plus avoir de cartes est éliminé (ou le dernier s'il reste plus de deux joueurs).
 - 
 ## Notes

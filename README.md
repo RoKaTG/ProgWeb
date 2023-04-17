@@ -1,14 +1,23 @@
 # Jeu de carte
-## La bataille :
-Bonjour, voici mon jeu de la bataille codé en javascript, html, css et php.
-Voici les conditions de lancement :
+Bienvenue dans mon jeu de la bataille codé en JavaScript, HTML, CSS, PHP et nodeJS ! Ce projet permet de jouer à la célèbre jeu de cartes de la bataille avec des amis en ligne et en local.
 
-- Télécharger nodeJS (notamment le commande prompt).
-- Télécharger le repository du projet, ensuite, extraire le projet AINSI QUE le node_module dans le dossier du projet (TRES IMPORTANT).
-- Ouvrir le commande prompt nodeJS, taper la commande *cd <<chemin d'accés au dossier du projet>>*
-- Ensuite on compile le server.js permettant de lancer le server de cette manière *node server.js*
-- Si le server se lance le message : *Server running in port 3000...*  s'affichage.
-- Ensuite lancé deux navigateurs, puis taper dans la barre de recherche *localhost:3000*
-- Entrez vos pseudos (vous ne pouvez pas avoir les mêmes pseudo un message d'erreur s'affichera).
-- Appuyez sur le bouton log in et play permettant de lancer une game (vous pouvez jouer jusqu'à quatres joueurs.
-- Jouer au jeu, le premier à 0 carte (ou le dernier avec des cartes si vous êtes plus de 2) est éliminer.
+## Conditions de lancement
+Voici comment lancer le projet sur votre ordinateur :
+
+- Téléchargez Node.js (et notamment le commande prompt).
+- Téléchargez le repository du projet.
+- Extrayez le projet ainsi que le dossier `node_module` dans le dossier du projet (TRES IMPORTANT).
+- Ouvrez la commande prompt de Node.js et tapez la commande cd suivie du chemin d'accès au dossier du projet.
+```bash
+cd C:\CHEMIN
+```
+- Compilez le fichier server.js en lançant la commande node server.js.
+Si le serveur se lance correctement, le message Server running in port 3000... s'affiche.
+Lancez deux navigateurs et tapez localhost:3000 dans la barre de recherche.
+Entrez vos pseudos (vous ne pouvez pas avoir les mêmes pseudos, sinon un message d'erreur s'affichera).
+Appuyez sur le bouton "log in and play" pour lancer une partie (jusqu'à quatre joueurs peuvent jouer).
+Jouez au jeu ! Le premier joueur à ne plus avoir de cartes est éliminé (ou le dernier s'il reste plus de deux joueurs).
+Notes
+Ce projet nécessite une connexion internet pour jouer avec des amis en ligne.
+Les règles du jeu de la bataille sont expliquées sur de nombreux sites internet si vous ne les connaissez pas encore.
+Amusez-vous bien avec mon jeu de la bataille !
